@@ -1,0 +1,40 @@
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form {
+    display: inline;
+}
+
+header .container{
+	margin: 2% 15%;
+}
+
+i.icon {
+    font-size: 2em;
+}
+
+.container.main {
+    margin-top: 7.0em;
+}
+
+#delete {
+    display: inline;
+}
+
+#search-bar{
+	margin-top: 4px;
+}
+
+#search-btn{
+	margin-top: 4px;
+}

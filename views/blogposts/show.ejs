@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header"><%=blogpost.name%></div>
+    <div class="ui top attached ">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%= blogpost.image %>" >
+            <div class="content">
+                <span><%= blogpost.created.toDateString() %></span>
+            </div>
+            <div class="description">
+                <p><%- blogpost.description %></p>
+            </div>
+            <% if(currentUser && blogpost.author.id.equals(currentUser._id)){ %>
+                <a class="ui orange basic button" href="/blogposts/<%= blogpost._id %>/edit">Edit</a>
+                <form id="delete" action="/blogposts/<%= blogpost._id %>?_method=DELETE" method="POST">
+                    <button class="ui red basic button">Delete</button>
+                </form>
+            <% }%>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/blogposts/<%= blogpost._id %>/comments/new">Add New Comment</a>
+                </div>
+                <hr>
+                <% blogpost.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <p>
+                                <%= comment.text %> 
+                            </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" 
+                               href="/blogposts/<%=blogpost._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/blogposts/<%=blogpost._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

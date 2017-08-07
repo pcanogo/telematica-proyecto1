@@ -1,0 +1,31 @@
+{
+  "name": "telematica-proyecto1",
+  "version": "1.0.0",
+  "description": "primer proyecto de topicos especiales de telematica",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcanogo/telematica-proyecto1.git"
+  },
+  "author": "Pablo Cano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcanogo/telematica-proyecto1/issues"
+  },
+  "homepage": "https://github.com/pcanogo/telematica-proyecto1#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "express-session": "^1.15.5",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0"
+  }
+}
