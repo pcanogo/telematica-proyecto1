@@ -87,78 +87,78 @@ BlogTing es una aplicación tipo blog donde los usuarios puden escribir sus prop
     
 ### 3.2 Servicios Web
 
-    /* URI: /
+     URI: /
       METODO: GET
       Servicio Web: Muestra el home de la pagina.
-      */
-    /* URI: /users
+      
+     URI: /users
       METODO: GET
       Servicio Web: Respuesta de prueba.
-      */
-    /* URI: /users
+      
+     URI: /users
       METODO: POST
       Servicio Web: Crea un nuevo usuario.
-      */
-    /* URI: /users/new
+      
+     URI: /users/new
       METODO: GET
       Servicio Web: Muestra el formulario para crear un nuevo usuario.
-      */
-    /* URI: /users/login
+      
+     URI: /users/login
       METODO: GET
       Servicio Web: Devuelve el formulario para ingresar a la pagina con una cuenta ya creada.
-      */
-    /* URI: /users/login
+      
+     URI: /users/login
       METODO: POST
       Servicio Web: Ingresar el usuario a la plataforma.
-      */
-    /* URI: /users/logout
+      
+     URI: /users/logout
       METODO: GET
       Servicio Web: Hace un log out del usuario.
-      */
-    /* URI: /blogposts
+      
+     URI: /blogposts
       METODO: GET
       Servicio Web: Muestra todos los blogposts.
-      */
-    /* URI: /blogposts
+      
+     URI: /blogposts
       METODO: POST
       Servicio Web: Crea un nuevo blogpost en la base de datos si el usuario tiene sesion activa.
-      */
-    /* URI: /blogposts/new
+      
+     URI: /blogposts/new
       METODO: GET
       Servicio Web: Formulario para agregar un blogpost si el usuario tiene sesion activa.
-    /* URI: /blogposts/:id
+     URI: /blogposts/:id
       METODO: GET
       Servicio Web: Muestra el blogpost seleccionado y los comentarios que tenga.
-      */
-    /* URI: /blogposts/:id/edit
+      
+     URI: /blogposts/:id/edit
       Servicio Web: Formulario para editar un blogpost si pertenece a la cuenta inciada.
-      */
-    /* URI: /blogposts/:id
+      
+     URI: /blogposts/:id
       METODO: PUT
       Servicio Web: Actualiza el blogpost si pertenece a la cuenta inciada.
-      */
-    /* URI: /blogposts/:id
+      
+     URI: /blogposts/:id
       METODO: DELETE
       Servicio Web: Elimina el blogpost seleccionado si pertenece a la cuenta inciada.
-      */
-    /* URI: /blogposts/:id/comments
+      
+     URI: /blogposts/:id/comments
       METODO: POST
       Servicio Web: Crea un nuevo comentario asociado al usuario loggeado.
-      */
-    /* URI: blogposts/:id/comments/new
+      
+     URI: blogposts/:id/comments/new
       METODO: GET
       Servicio Web: Formulario para adicionar un nuevo comentario.
-      */
-    /* URI: /blogposts/:id/:comment_id/edit
+      
+     URI: /blogposts/:id/:comment_id/edit
       METODO: GET
       Servicio Web: Formulario para editar un comentario si pertenece a la cuenta inciada.
-      */
-    /* URI: /blogposts/:id/:comment_id
+      
+     URI: /blogposts/:id/:comment_id
       METODO: PUT
       Servicio Web: Edita el comentario seleccionado si pertenece a la cuenta inciada.
-      */
-    /* URI: /blogposts/:id/:comment_id
+      
+     URI: /blogposts/:id/:comment_id
       METODO: DELETE
       Servicio Web: Elimina el comentario seleccionado si pertenece a la cuenta inciada.
-      */
+      
 
