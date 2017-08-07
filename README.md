@@ -1,77 +1,75 @@
 # Proyecto 1 Topicos de Telematica
-By: Lope Carvajal --- lcarva12@eafit.edu.co
+By: Pablo Cano --- pcanogo@eafit.edu.co
 
 ## 1.Descripción
-Aplicación de estilo foro donde se gestionan publicaciónes con imagenes y comentarios.
-La base de la aplicación fue generada con el IDE PHPstorm.
+BlogTing es una aplicación tipo blog donde los usuarios puden escribir sus propios articulos
+
 
 ## 2.Analisis
 ### 2.1 Requisitos Funcionales
-1. Poder crear una cuenta e ingresar a la pagina con ella.
-2. Poder crear un nuevo campamento solo si ha ingresado a la plataforma.
-3. Poder comentar en un post solo si ha ingresado a la plataforma.
-4. Poder buscar entre todos los campamentos por su nombre.
-5. Lista todos los campamentos en su pagina respectiva.
+1. Crear Cuenta e ingresar a la pagina.
+2. Crear Blogpost cuando uno este ingresado en la pagina.
+3. Comentar en los post solo si esta metido en su cuenta.
+4. Buscar post por su titulo.
+5. Mostrar todoso los blogsposts actualmente en la base de datos
 ### 2.2 Tecnologías de Desarrollo y Ejecución
 * Lenguaje de Programación: Javascript
-* Framework web backend: NodeJS - Express
-* Framework web frontend: --
-* Base de datos: MongoDB
-* Web App Server: NodeJS Embeded
+* Framework Web Backend: NodeJS - Express
+* Base de Datos: MongoDB
+* Web App Server: NodeJS Referenciado
 * Web Server: NGINX
 ### 2.3 Ambientes de Desarrollo, Pruebas y Producción
 #### 2.3.1 Desarrollo
-  * Sistema Operativo: Windows 10 pro 64bit
+  * Sistema Operativo: MacOS Sierra 
   * Lenguaje de Programación: Javascript
-  * Framework web Backend: Node.js 8.2.1 -- Express.js 4.15.2
-  * Framework web Frontend: --
-  * Web App Server: Embebido
-  * Web Server: --
+  * Framework Web Backend: Node.js 8.2.1 -- Express.js 4.15.2
+  * Web App Server: Referenciado
   * Base de Datos: MongoDB 3.4.6
-  * Editor: PHPstorm
+  * Editor: Sublime Text 3
 #### 2.3.2 Pruebas
   DCA:
   * Sistema Operativo: Linux Centos 7.1
   * Lenguaje de Programación: Javascript
   * Framework web Backend: Node.js 8.2.1 -- Express.js 4.15.2
   * Framework web Frontend: --
-  * Web App Server: Embebido
+  * Web App Server: Referenciado
   * Web Server: NGINX
   * Link: 10.131.137.204 
   * Base de Datos: MongoDB 3.4.6
   La versión de node se manejó con nvm a la versión actual que es 8.2.1
 #### 2.3.3 Producción
-  * Proveedores: Heroku mLab
-  * Link: https://sleepy-cove-17547.herokuapp.com/
+  * Proveedores: Heroku MongoLab
+  * Link: https://frozen-gorge-34663.herokuapp.com/
   * Lenguaje de Programación: Javascript
   * Framework web Backend: Node.js 8.2.1 -- Express.js 4.15.2
-  * Framework web Frontend: --
-  * Web App Server: Embebido
+  * Web App Server: Referenciado
   * Web Server: NGINX
   * Base de Datos: MongoDB 3.2.1
   
 ## 3.Diseño
 ### 3.1 Modelo de Datos
     
-    campground: {
-        name: String,
-        image: String,
-        description: String,
-        comments: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Comment"
-            }
-        ],
-        author: {
-            id: {
-                type: mongoose.Schema.Types.ObjectId
-            },
-            username : String
-        }
+    Blogpost: {
+       name: String,
+       image: String,
+       description: String,
+       created: {type: Date, default: Date.now},
+       author: {
+          id: {
+             type: mongoose.Schema.Types.ObjectId,
+             ref: "User"
+          },
+          username: String
+       },
+       comments: [
+          {
+             type: mongoose.Schema.Types.ObjectId,
+             ref: "Comment"
+          }
+       ]
     }
 
-    comment: {
+    Comment = {
         text: String,
         author: {
             id: {
@@ -82,7 +80,7 @@ La base de la aplicación fue generada con el IDE PHPstorm.
         }
     }
 
-    user: {
+    User: {
         username: String,
         password: String
     }
@@ -99,69 +97,68 @@ La base de la aplicación fue generada con el IDE PHPstorm.
       */
     /* URI: /users
       METODO: POST
-      Servicio Web: Crea un nuevo usuario con la información del body y lo loggea a la pagina.
+      Servicio Web: Crea un nuevo usuario.
       */
     /* URI: /users/new
       METODO: GET
-      Servicio Web: Muestra la forma para crear un usuario nuevo.
+      Servicio Web: Muestra el formulario para crear un nuevo usuario.
       */
     /* URI: /users/login
       METODO: GET
-      Servicio Web: Muestra la forma para ingresar a la pagina con un usuario existente.
+      Servicio Web: Devuelve el formulario para ingresar a la pagina con una cuenta ya creada.
       */
     /* URI: /users/login
       METODO: POST
-      Servicio Web: Intenta ingresar al usuario a la plataforma con los contenidos del body.
+      Servicio Web: Ingresar el usuario a la plataforma.
       */
     /* URI: /users/logout
       METODO: GET
-      Servicio Web: Hace un log out del usuario actual.
+      Servicio Web: Hace un log out del usuario.
       */
-    /* URI: /campgrounds
+    /* URI: /blogposts
       METODO: GET
-      Servicio Web: Muestra todos los campamentos guardados.
+      Servicio Web: Muestra todos los blogposts.
       */
-    /* URI: /campgrounds
+    /* URI: /blogposts
       METODO: POST
-      Servicio Web: Añade un nuevo campamento a la base de datos solo si se ha ingresado con una cuenta valida con la información del body.
+      Servicio Web: Crea un nuevo blogpost en la base de datos si el usuario tiene sesion activa.
       */
-    /* URI: /campgrounds/new
+    /* URI: /blogposts/new
       METODO: GET
-      Servicio Web: Muestra la forma para agregar un campamento solo si se ha ingresado con una cuenta valida.
-      */
-    /* URI: /campgrounds/:id
+      Servicio Web: Formulario para agregar un blogpost si el usuario tiene sesion activa.
+    /* URI: /blogposts/:id
       METODO: GET
-      Servicio Web: Muestra un campamento especifico y los comentarios que tenga.
+      Servicio Web: Muestra el blogpost seleccionado y los comentarios que tenga.
       */
-    /* URI: /campgrounds/:id/edit
-      Servicio Web: Muestra la forma para editar un campamento solo si le pertenece al usuario que este loggeado.
+    /* URI: /blogposts/:id/edit
+      Servicio Web: Formulario para editar un blogpost si pertenece a la cuenta inciada.
       */
-    /* URI: /campgrounds/:id
+    /* URI: /blogposts/:id
       METODO: PUT
-      Servicio Web: Actualiza los datos del campamento identificado con la información del body solo si le pertenece al usuario.
+      Servicio Web: Actualiza el blogpost si pertenece a la cuenta inciada.
       */
-    /* URI: /campgrounds/:id
+    /* URI: /blogposts/:id
       METODO: DELETE
-      Servicio Web: Elimina el campamento identificado solo si le pertenece al usuario.
+      Servicio Web: Elimina el blogpost seleccionado si pertenece a la cuenta inciada.
       */
-    /* URI: /campgrounds/:id/comments
+    /* URI: /blogposts/:id/comments
       METODO: POST
-      Servicio Web: Crea un nuevo comentario asociado al usuario loggeado y lo añade al arreglo de comentarios del campamento identificado.
+      Servicio Web: Crea un nuevo comentario asociado al usuario loggeado.
       */
-    /* URI: campgrounds/:id/comments/new
+    /* URI: blogposts/:id/comments/new
       METODO: GET
-      Servicio Web: Muestra la forma para agregar un nuevo comentario.
+      Servicio Web: Formulario para adicionar un nuevo comentario.
       */
-    /* URI: /campgrounds/:id/:comment_id/edit
+    /* URI: /blogposts/:id/:comment_id/edit
       METODO: GET
-      Servicio Web: Muestra la forma para editar un comentario solo si le pertenece al usuario loggeado.
+      Servicio Web: Formulario para editar un comentario si pertenece a la cuenta inciada.
       */
-    /* URI: /campgrounds/:id/:comment_id
+    /* URI: /blogposts/:id/:comment_id
       METODO: PUT
-      Servicio Web: Edita el comentario identificado con la información del body solo si este le pertenece al usuario loggeado.
+      Servicio Web: Edita el comentario seleccionado si pertenece a la cuenta inciada.
       */
-    /* URI: /campgrounds/:id/:comment_id
+    /* URI: /blogposts/:id/:comment_id
       METODO: DELETE
-      Servicio Web: Elimina el comentario identificado solo si este le pertenece al usuario loggeado.
+      Servicio Web: Elimina el comentario seleccionado si pertenece a la cuenta inciada.
       */
 
