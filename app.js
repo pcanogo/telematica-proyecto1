@@ -19,7 +19,10 @@ var blogpostRoutes = require("./routes/blogpost"),
     indexRoutes      = require("./routes/index");
 
 //DB INIT
-mongoose.connect("mongodb://localhost/telematica_proyecto1");
+// mongoose.connect("mongodb://localhost/telematica_proyecto1");
+mongoose.connect("mongodb://pcanogo:proyecto1@ds161021.mlab.com:61021/telematica-proyecto1");
+
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -51,7 +54,9 @@ app.use("/blogposts", blogpostRoutes);
 app.use("/blogposts/:id/comments", commentRoutes);
 app.use("/search", searchRoutes);
 
+var port = process.env.PORT || 3005;
+var myIp = process.env.IP;
 
-app.listen(3005, function(){
+app.listen(port, function(){
    console.log("The BlogTing Server Has Started!");
 });
